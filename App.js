@@ -23,9 +23,12 @@ export default function App() {
   timeAmount.push({label: '4 hours', value: 4});
   timeAmount.push({label: '5 hours', value: 5});
 
+  const genders = Array();
+  genders.push({label: 'Male', value: 'male'})
+  genders.push({label: 'Female', value: 'female'})
 
-  return (
-    <View style={styles.container}>
+  return(
+    <View>
     </View>
   );
 }
