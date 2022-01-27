@@ -8,6 +8,7 @@ export default function App() {
   const [bottles, setBottles] = useState(1,'bottle');
   const [time, setTime] = useState(1, 'hour');
   const [gender, setGender] = useState('male');
+  const [alcLevel, setAlcLevel] = useState(0);
 
   const bottleAmount = Array();
   bottleAmount.push({label: '1 bottle', value: 1});
@@ -28,7 +29,39 @@ export default function App() {
   genders.push({label: 'Female', value: 'female'})
 
   return(
-    <View>
+    <View style={styles.container}>
+      <View style={styles.field}>
+        <Text>Weight</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => setWeight(text)}
+          placeholder="in kilograms"
+          keyboardType='numeric'></TextInput>
+      </View>
+      <View style={styles.field}>
+        <Text>Bottles</Text>
+         <Picker style={styles.bottleAmount}
+        onValueChange={(itemValue) => setBottles(itemValue)}
+        selectedValue={bottles}
+        >
+          {bottleAmount.map((bottles,index) => (
+            <Picker.Item key={index} label={bottles.label} value={bottles.value}/>
+          ))
+          }
+        </Picker>
+      </View>
+      <View style={styles.field}>
+      <Text>Gender</Text>
+      <RadioForm
+          style={styles.radio}
+          buttonSize = {10}
+          radio_props={genders}
+          initial={0}
+          onPress={(value) => {setGender(value)}}
+        />
+        <Text>{alcLevel.toFixed(0)}</Text>
+      </View>
+      {/* <Button onPress={calculate} title="Calculate"></Button> */}
     </View>
   );
 }
@@ -36,8 +69,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 30,
   },
+  field: {
+    margin: 10,
+  },
+  input: {
+    marginLeft: 10,
+  },
+  radio: {
+    marginTop:10,
+    marginBottom: 10,
+  }
 });
